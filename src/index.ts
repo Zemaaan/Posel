@@ -1,26 +1,44 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const database = require('./database'); // Replace with your database library
+import express = require('express');
+import bodyParser = require('body-parser');
+import database = require('mysql'); // Replace with your database library
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+const pool = database.createPool({
+    host: 'localhost',
+    user: 'test',
+    password: 'test',
+    database: 'test'
+});
 
 // Middleware to parse form data
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Serve HTML file for form submission
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/index.html');
+    res.sendFile(__dirname + '/views/Registracija.html');
 });
 
 // Handle form submission
 app.post('/submit', async (req, res) => {
     try {
         // Extract form data
-        const { name, email } = req.body;
+        const { Firstname, Lastname, age, email, password } = req.body;
 
         // Insert data into database (using hypothetical database library)
-        await database.insertUser(name, email);
+        // await database.insertUser(name, email);
+
+        if(password.length < 8){
+            res.status(500).send('Pogreška - prekratka lozinka');
+        }
+
+        const query = 'INSERT INTO test.user (Firstname, Lastname, email, age, password) VALUES (?, ?, ?, ?, ?)';
+        pool.query(query, [Firstname, Lastname,email, age, password], (error, results) => {
+            if (error) {
+                console.error('Error:', error);
+            }
+        });
 
         res.send('Data inserted successfully');
     } catch (error) {
@@ -28,7 +46,6 @@ app.post('/submit', async (req, res) => {
         res.status(500).send('Internal Server Error');
     }
 });
-
 // Start server
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
