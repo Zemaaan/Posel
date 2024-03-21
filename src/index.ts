@@ -1,31 +1,35 @@
-import { AppDataSource } from "./data-source"
-import { User } from "./entity/User"
-const bcrypt = require("bcrypt")
-AppDataSource.initialize().then(async () => {
+const express = require('express');
+const bodyParser = require('body-parser');
+const database = require('./database'); // Replace with your database library
 
-    console.log("Inserting a new user into the database...")
-    const user = new User()
-    user.firstName = "Timber"
-    user.lastName = "Saw"
-    user.email = "hrvoje.zeman@student.um.si"
-    user.age = 25
-    await AppDataSource.manager.save(user)
-    console.log("Saved a new user with id: " + user.id)
+const app = express();
+const PORT = process.env.PORT || 3000;
 
-    console.log("Loading users from the database...")
-    const users = await AppDataSource.manager.find(User)
-    console.log("Loaded users: ", users)
+// Middleware to parse form data
+app.use(bodyParser.urlencoded({ extended: true }));
 
-    console.log("Here you can setup and run express / fastify / any other framework.")
+// Serve HTML file for form submission
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/index.html');
+});
 
-}).catch(error => console.log(error))
+// Handle form submission
+app.post('/submit', async (req, res) => {
+    try {
+        // Extract form data
+        const { name, email } = req.body;
 
-bcrypt.genSalt(10, (err, salt) => {
-    // use salt to hash password
-})
+        // Insert data into database (using hypothetical database library)
+        await database.insertUser(name, email);
 
-bcrypt.genSalt(10, (err, salt) => {
-    bcrypt.hash(plaintextPassword, salt, function(err, hash) {
-        // Store hash in the database
-    });
-})
+        res.send('Data inserted successfully');
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+// Start server
+app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+});
