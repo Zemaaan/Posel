@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
 });
 
 // Handle form submission
-app.post('/submit', async (req, res) => {
+app.post('/Registracija', async (req, res) => {
     try {
         // Extract form data
         const { Firstname, Lastname, age, email, password } = req.body;
@@ -41,6 +41,28 @@ app.post('/submit', async (req, res) => {
         });
 
         res.send('Data inserted successfully');
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+app.post('/Prijava', async (req, res) => {
+    try {
+        // Extract form data
+        const { email, password } = req.body;
+
+        // Insert data into database (using hypothetical database library)
+        // await database.insertUser(name, email);
+
+        const query = 'SELECT email, password FROM user WHERE email = ? AND password = ?';
+        pool.query(query, [email, password], (error, results) => {
+            if (error) {
+                console.error('Error:', error);
+            }
+        });
+
+        res.send('Data found successfully');
     } catch (error) {
         console.error('Error:', error);
         res.status(500).send('Internal Server Error');
