@@ -2,9 +2,57 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Prijava</title>
+    <title>Title</title>
 </head>
 <body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Input Form</title>
+</head>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get the form element
+        const form = document.getElementById('SubmitForma');
 
+        // Add event listener for keydown event
+        form.addEventListener('keydown', function(event) {
+            // Check if the Enter key is pressed
+            if (event.key === 'Enter') {
+                // Prevent the default form submission
+                event.preventDefault();
+
+                // Submit the form
+                form.submit();
+            }
+        });
+    });
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<body style="background: #262424">
+<h1>User Input Form</h1>
+<div class="container-fluid">
+    <div class="vanjskiContainerForma" style="margin-top:15%; margin-left:40%;">
+        <div class="col-4 mt-5" style="">
+            <form id="SubmitForma" action="/Prijava" method="post">
+                <table>
+                    <tr>
+                        <input placeholder="E-mail" class="p-2" style="border:0; background-color:#382f2f; width: 100%" type="email" id="email" name="email" required><br>
+                    </tr>
+                    <div class="spacer" style="height:15px;"></div>
+                    <tr>
+                        <input placeholder="Password" class="p-2"  style="border:0; background-color:#382f2f; width: 100%" id="password" name="password" required><br>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+    <div class="slika ml-3">
+        <img src="https://beyondi.co/images/logo/beyondi-logo-mint-white.svg" alt="" style="width: 20%; height:50%; margin-top:15%; margin-left:39%">
+    </div>
+</div>
 </body>
 </html>
