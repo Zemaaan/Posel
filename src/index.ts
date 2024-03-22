@@ -1,6 +1,7 @@
 import express = require('express');
 import bodyParser = require('body-parser');
 import database = require('mysql'); // Replace with your database library
+import nodemailer = require('nodemailer');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -28,15 +29,36 @@ app.post('/Registracija', async (req, res) => {
 
         // Insert data into database (using hypothetical database library)
         // await database.insertUser(name, email);
-
         const query = 'INSERT INTO test.user (Firstname, email, age, password) VALUES (?, ?, ?, ?)';
         pool.query(query, [Firstname, email, age, password], (error, results) => {
             if (error) {
                 console.error('Error:', error);
             }
         });
+        res.redirect('Profil.html');
 
-        res.send('Data inserted successfully');
+        // var transporter = nodemailer.createTransport({ // Ne radi zbog nekih postavka na Google racunu
+        //     service: 'gmail',
+        //     auth: {
+        //         user: 'hrvoje.zeman1@gmail.com',
+        //         pass: ''
+        //     }
+        // });
+        //
+        // var mailOptions = {
+        //     from: '000000000@gmail.com',
+        //     to: 'hrvoje.zeman1@gmail.com',
+        //     subject: 'Sending Email using Node.js',
+        //     text: 'That was easy!'
+        // };
+        //
+        // transporter.sendMail(mailOptions, function(error, info){
+        //     if (error) {
+        //         console.log(error);
+        //     } else {
+        //         console.log('Email sent: ' + info.response);
+        //     }
+        // });
     } catch (error) {
         console.error('Error:', error);
         res.status(500).send('Internal Server Error');
