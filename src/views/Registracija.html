@@ -12,46 +12,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Input Form</title>
 </head>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<style>
-    .desno {
-        /* Linear gradient from top right (purple) to bottom left (darker purple) */
-        background: linear-gradient(to bottom left, #9B30FF, #4B0082);
-        /* Ensure the gradient covers the entire viewport */
-        height: 100vh;
-        margin: 0;
-        /* Optional: Center the content */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-</style>
-<body>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<body style="background: #262424">
+<div class="container-fluid">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm" style="border:1px solid white; height:100vh;">
+                <div style="color:white; font-size: 40px; margin-top:40vh; margin-left:17vh;">
+                    Full stack developer test - Hrvoje Zeman
+                </div>
+            </div>
+            <div class="col-sm" style="border:1px solid white; height:100vh;">
+                <form action="/Registracija" method="post">-->
+                    <table style="Margin-top:30vh; margin-left:30vh;">
+                        <tr>
+                            <td>
+                                <input placeholder="Ime" class="p-2" style="border-radius:5px; width:35vh;" type="text" id="Firstname" name="Firstname" required><br>
+                            </td>
+                        </tr>
+                        <tr style="height:1vh">
+                        </tr>
+                        <tr>
+                            <td>
+                                <input placeholder="Email" class="p-2" style="border-radius:5px; width:35vh;" type="email" id="email" name="email" required><br>
+                            </td>
+                        </tr>
+                        <tr style="height:1vh">
+                        </tr>
+                        <tr>
+                            <td>
+                                <input placeholder="Age" type="number" class="p-2" style="border-radius:5px; width: 35vh" id="age" name="age" required><br>
+                            </td>
+                        </tr>
+                        <tr style="height:1vh">
+                        </tr>
+                        <tr>
+                            <td>
+                                <input placeholder="Lozinka" type="password" class="p-2" style="border-radius:5px; width: 35vh" id="password" name="password" required><br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button class="mt-4" style="border:0; margin-left:14vh; background-color:#5e5454; color:white" type="submit">Registriraj me</button>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+                <img src="https://beyondi.co/images/logo/beyondi-logo-mint-white.svg" alt="" style="margin-top:10vh;scale: 0.3">
 
-<div class="container-fluid" style="border:5px solid black; height:100vh">
-        <!-- Column 2 -->
-    <div class="row">
-        <div class="col-6" style="border: 1px solid purple">
-
-            <table>
-                <tr>
-                    <input type="text" name="email">
-                    <input type="text" name="password">
-                </tr>
-            </table>
+            </div>
         </div>
-        <div class="col-6 desno" style="border: 1px solid purple; height: 100vh">Desno</div>
     </div>
-<!--        <div class="col-sm-6">-->
-<!--            <div style="border:1px solid red; text-align: center">-->
-<!--                <div class="row">-->
-<!--                    <div class="col-6" style="border: 1px solid purple">Levo</div>-->
-<!--                    <div class="col-6 desno" style="border: 1px solid purple; height: 40vh">Desno</div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-</div>
+<!--<img src="https://beyondi.co/images/logo/beyondi-logo-mint-white.svg" alt="" style="width: 10vh; height:10vh;">-->
 </body>
 </html>
 </body>

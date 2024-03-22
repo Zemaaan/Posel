@@ -24,17 +24,13 @@ app.get('/', (req, res) => {
 app.post('/Registracija', async (req, res) => {
     try {
         // Extract form data
-        const { Firstname, Lastname, age, email, password } = req.body;
+        const { Firstname, age, email, password } = req.body;
 
         // Insert data into database (using hypothetical database library)
         // await database.insertUser(name, email);
 
-        if(password.length < 8){
-            res.status(500).send('Pogreška - prekratka lozinka');
-        }
-
-        const query = 'INSERT INTO test.user (Firstname, Lastname, email, age, password) VALUES (?, ?, ?, ?, ?)';
-        pool.query(query, [Firstname, Lastname,email, age, password], (error, results) => {
+        const query = 'INSERT INTO test.user (Firstname, email, age, password) VALUES (?, ?, ?, ?)';
+        pool.query(query, [Firstname, email, age, password], (error, results) => {
             if (error) {
                 console.error('Error:', error);
             }
@@ -47,7 +43,7 @@ app.post('/Registracija', async (req, res) => {
     }
 });
 
-app.post('/Prijava', async (req, res) => {
+app.post('/prijava', async (req, res) => {
     try {
         // Extract form data
         const { email, password } = req.body;
